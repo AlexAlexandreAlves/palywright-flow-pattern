@@ -60,7 +60,7 @@ await register.registerAs("email@test.com", "Name", "password", "password");
 - Node.js installed
 - Dependencies installed with:
   ```
-  npm install
+  npm run setup
   ```
 
 ## Notes
