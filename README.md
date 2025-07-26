@@ -1,69 +1,69 @@
-# Test Automation Facade Pattern
+# Test Automation Flow Model Pattern
 
-Este projeto é uma suíte de testes automatizados utilizando [Playwright](https://playwright.dev/) para validar fluxos de autenticação e cadastro em uma aplicação web. O projeto adota o **Facade Pattern** para organizar e simplificar a interação com as páginas, tornando os testes mais legíveis, reutilizáveis e de fácil manutenção.
+This project is an automated test suite using [Playwright](https://playwright.dev/) to validate authentication and registration flows in a web application. The project adopts the **Flow Model Pattern** to organize and simplify page interactions, making tests more readable, reusable, and easy to maintain.
 
-## Contexto
+## Context
 
-O objetivo deste repositório é demonstrar como estruturar testes automatizados de ponta a ponta (E2E) utilizando o padrão de projeto **Facade**. Esse padrão encapsula operações complexas de páginas em classes de fachada, expondo métodos de alto nível para os testes, sem que eles precisem conhecer detalhes de implementação dos elementos da interface.
+The purpose of this repository is to demonstrate how to structure end-to-end (E2E) automated tests using the **Flow Model Pattern**. This pattern encapsulates complex page operations in flow classes, exposing high-level methods for tests without requiring them to know implementation details of the UI elements.
 
-## Sobre o Facade Pattern
+## About the Flow Model Pattern
 
-O **Facade Pattern** (Padrão Fachada) é utilizado para fornecer uma interface simplificada para um conjunto de interfaces em um subsistema. No contexto deste projeto, cada fluxo de negócio (ex: autenticação, cadastro) possui uma fachada (`AuthFacade`, `RegisterFacade`) que abstrai as interações com os elementos da página, facilitando a escrita e manutenção dos testes.
+The **Flow Model Pattern** is used to provide a simplified interface for a set of operations in a subsystem. In the context of this project, each business flow (e.g., authentication, registration) has a flow model (`AuthFlow`, `RegisterFlow`) that abstracts interactions with page elements, making test writing and maintenance easier.
 
-**Exemplo:**
+**Example:**
 ```typescript
-const register = new RegisterFacade(page);
-await register.registerAs("email@teste.com", "Nome", "senha", "senha");
+const register = new RegisterFlow(page);
+await register.registerAs("email@test.com", "Name", "password", "password");
 ```
 
-## Estrutura do Projeto
+## Project Structure
 
-- `ui/pages/`: Page Objects com os elementos e ações de cada página.
-- `ui/facade/`: Facades que encapsulam fluxos completos de negócio.
-- `tests/`: Arquivos de teste automatizados.
-- `playwright.config.ts`: Configuração do Playwright (incluindo baseURL).
+- `ui/pages/`: Page Objects with elements and actions for each page.
+- `ui/flows/`: Flow models that encapsulate complete business flows.
+- `tests/`: Automated test files.
+- `playwright.config.ts`: Playwright configuration (including baseURL).
 
-## Comandos Essenciais
+## Essential Commands
 
-- **Executar todos os testes:**
+- **Run all tests:**
   ```
   npx playwright test
   ```
 
-- **Executar testes em modo UI interativo:**
+- **Run tests in interactive UI mode:**
   ```
   npx playwright test --ui
   ```
 
-- **Executar testes em um navegador específico:**
+- **Run tests in a specific browser:**
   ```
   npx playwright test --project=chromium
   ```
 
-- **Executar um arquivo de teste específico:**
+- **Run a specific test file:**
   ```
   npx playwright test tests/login.test.ts
   ```
 
-- **Executar em modo debug:**
+- **Run in debug mode:**
   ```
   npx playwright test --debug
   ```
 
-- **Gerar testes automaticamente com Codegen:**
+- **Generate tests automatically with Codegen:**
   ```
   npx playwright codegen
   ```
 
-## Requisitos
+## Requirements
 
-- Node.js instalado
-- Dependências instaladas com:
+- Node.js installed
+- Dependencies installed with:
   ```
   npm install
   ```
 
-## Observações
+## Notes
 
-- O projeto utiliza `baseURL` configurado no `playwright.config.ts`, permitindo o uso de caminhos relativos nos testes.
-- Como a aplicação de exemplo não possui banco de dados persistente, os dados criados existem apenas durante a sessão.
+- The project uses `baseURL` configured in `playwright.config.ts`, allowing the use of relative paths in tests.
+- As the sample application does not have a persistent database, created data exists only during the session.
